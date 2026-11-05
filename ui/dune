@@ -1,0 +1,7 @@
+(library
+  (name labyrinth_ui)
+  (libraries maze_core window_position graphics unix)
+  (modules labyrinth_ui)
+  (wrapped false)
+  (enabled_if (= %{env:OMAZING_GRAPHICS=false} "true"))
+)

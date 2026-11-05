@@ -1,0 +1,6 @@
+(executable
+  (name test)
+  (libraries alcotest qcheck qcheck-alcotest maze_core window_position unix)
+  (modules test test_maze test_game test_structure test_qcheck test_window_position)
+  (flags (:standard -w -27))
+)

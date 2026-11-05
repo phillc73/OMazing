@@ -1,0 +1,5 @@
+(library
+  (name maze_core)
+  (modules maze_core)
+  (wrapped false)
+)

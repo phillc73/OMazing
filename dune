@@ -1,0 +1,6 @@
+(executable
+  (name main)
+  (enabled_if (= %{env:OMAZING_GRAPHICS=false} "true"))
+  (libraries maze_core labyrinth_ui graphics unix)
+  (modules main)
+)

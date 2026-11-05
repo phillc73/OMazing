@@ -1,0 +1,16 @@
+_build/
+*.exe
+*.o
+*.cmi
+*.cmx
+*.cmti
+*.cma
+*.cmx
+*.cmxs
+*.opam
+*.opam.lock
+*.merlin
+*.merlin-conf
+# Apalache writes its working directories next to the spec it checks.
+_apalache-out/
+specs/**/_apalache-out/

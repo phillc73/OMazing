@@ -1,0 +1,19 @@
+-- Hand-checkable platform5 fixture for the game-state model.
+-- Each grid is 5x5. Legend: . = wall, W = wall inside the lattice,
+-- S = start, P = open passage, E = exit, # = closed corridor.
+-- The other letters are room and corridor names, kept as comments.
+-- platform5: start at (1,1), exit at (3,3). mazeId 1 closes corridor (3,2).
+
+-- mazeId 0: spanning tree
+..R.R
+.RAAA
+.S.A.
+.TATB
+..T..
+
+-- mazeId 1: pinched (corridor (3,2) closed)
+..R.R
+.RAAA
+.S.#.
+.TATB
+..T..
