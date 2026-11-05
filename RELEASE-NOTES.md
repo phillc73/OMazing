@@ -6,20 +6,29 @@ First release.
 
 ### Window placement
 
-The `window-position` config key places the game window. It is best-effort:
+The `window-position` config key requests a position for the game window.
+The request is validated; whether it is honoured depends on the window
+manager:
 
-- A window manager that owns placement (tiling, or a compositor that
-  controls window geometry) may override or ignore the requested
-  position. Under mutter and Wayland the placement request is discarded
-  by design and the window opens where the compositor decides.
-- Each coordinate is between -8192 and 8192, and the window must start
-  inside the screen it launches on. A value outside either limit is
-  rejected: the window opens at the default position and one warning
-  line is written to stderr. The behaviour is then identical to having
-  no `window-position` key at all.
+- A manager that owns placement discards the request. This covers tiling
+  managers and most compositors on Wayland, where clients cannot set
+  their own position and mutter ignores the hint. On such a desktop the
+  setting is validated and then has no effect on where the window
+  appears.
+- A manager that honours position hints places the window as asked. This
+  is typical of X11 sessions with a stacking window manager that defers
+  to the client.
+
+Validation is unconditional:
+
+- Each coordinate must be decimal digits with a single sign, between
+  -8192 and 8192, and the window must start inside the screen it
+  launches on. A value outside either limit is rejected: the window
+  opens at the default position and one warning line is written to
+  stderr. The behaviour is then identical to having no `window-position`
+  key at all.
 - A negative origin is accepted. X11 uses it for monitors to the left of
-  or above the primary, and the X server moves a window that crosses the
-  left or top edge back inside.
+  or above the primary, where the window manager honours the hint.
 
 ### Fixed
 

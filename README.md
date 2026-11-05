@@ -113,31 +113,41 @@ make run
 
 ### Window position
 
-The game opens wherever the X server puts it (the top left of the
-screen) unless a configuration file says otherwise. To place it,
-create `~/.config/omazing/config` (or point `OMAZING_CONFIG` at a file,
+The `window-position` key asks for the window to open at a given point.
+It is a request, not a guarantee: see Placement below.
+
+Create `~/.config/omazing/config` (or point `OMAZING_CONFIG` at a file,
 or set `XDG_CONFIG_HOME`) with one line:
 
 ```
 window-position = +120+80
 ```
 
-Both values are screen coordinates for the window's top-left corner,
-in pixels. Each is between -8192 and 8192, and the window must start
-inside the screen the program is launched on: a window that begins at or
-past the screen's right or bottom edge never appears. Values outside
-either limit are dropped with `omazing: warning: window-position ...` on
-stderr, and the window opens at the default position, exactly as if the
-key were absent. A negative origin is kept: X11 uses it for monitors to
-the left of or above the primary, and the X server moves a window that
-crosses the left or top edge back inside.
+Both values are pixel coordinates for the window's top-left corner, each
+between -8192 and 8192, and each written as decimal digits with a single
+sign (`+120+80` or `-120-80`; mixed signs are rejected).
+
+Validation is what the program guarantees. A value outside the range, or
+in any other form, is dropped with `omazing: warning: window-position ...`
+on stderr and the window opens at the default position, exactly as if the
+key were absent. A value that would start the window at or past the
+screen's right or bottom edge is rejected the same way, because the
+window would never receive its first expose event and the launch would
+wait with no window and no error.
+
+Placement itself depends on the window manager:
+
+- A manager that owns placement discards the request. This includes
+  tiling managers and most compositors on Wayland, where clients cannot
+  set their own position and mutter ignores the hint entirely. On such a
+  desktop the setting is validated and then has no effect on where the
+  window appears.
+- A manager that honours position hints places the window as asked. This
+  is typical of X11 sessions with a stacking window manager that defers
+  to the client.
 
 Nothing else is read from the file. The key is optional: with no file, or
 no `window-position` line, the behaviour is unchanged.
-
-Placement is manual on purpose. Through the X11 Graphics library the
-program cannot see which screen or workspace the launching command came
-from, so it cannot choose a position for itself.
 
 ## Project Structure
 
@@ -241,6 +251,7 @@ Contributions are welcome! Please ensure:
 - Tests use [Alcotest](https://github.com/mirage/alcotest)
 - Randomised tests use [QCheck](https://github.com/c-cube/qcheck)
 - Linting with [Zanuda](https://github.com/Kakadu/zanuda)
+- Behaviour models in [`specs/`](specs/) use [Quint](https://quint.sh) from [Informal Systems](https://informal.systems/)
 
 ## AI assistance
 
