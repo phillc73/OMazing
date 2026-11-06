@@ -111,44 +111,6 @@ Or:
 make run
 ```
 
-### Window position
-
-The `window-position` key asks for the window to open at a given point.
-It is a request, not a guarantee: see Placement below.
-
-Create `~/.config/omazing/config` (or point `OMAZING_CONFIG` at a file,
-or set `XDG_CONFIG_HOME`) with one line:
-
-```
-window-position = +120+80
-```
-
-Both values are pixel coordinates for the window's top-left corner, each
-between -8192 and 8192, and each written as decimal digits with a single
-sign (`+120+80` or `-120-80`; mixed signs are rejected).
-
-Validation is what the program guarantees. A value outside the range, or
-in any other form, is dropped with `omazing: warning: window-position ...`
-on stderr and the window opens at the default position, exactly as if the
-key were absent. A value that would start the window at or past the
-screen's right or bottom edge is rejected the same way, because the
-window would never receive its first expose event and the launch would
-wait with no window and no error.
-
-Placement itself depends on the window manager:
-
-- A manager that owns placement discards the request. This includes
-  tiling managers and most compositors on Wayland, where clients cannot
-  set their own position and mutter ignores the hint entirely. On such a
-  desktop the setting is validated and then has no effect on where the
-  window appears.
-- A manager that honours position hints places the window as asked. This
-  is typical of X11 sessions with a stacking window manager that defers
-  to the client.
-
-Nothing else is read from the file. The key is optional: with no file, or
-no `window-position` line, the behaviour is unchanged.
-
 ## Project Structure
 
 ```
@@ -176,11 +138,6 @@ no `window-position` line, the behaviour is unchanged.
     ├── test_game.ml         # Game state tests
     ├── test_qcheck.ml       # Randomised property tests
     └── test_window_position.ml  # window-position parsing and screen check
-    ├── dune                 # Test build configuration
-    ├── test.ml              # Test suite entry point
-    ├── test_maze.ml         # Maze generation tests
-    ├── test_structure.ml    # Perfect-maze and reachability invariants
-    └── test_game.ml         # Game state tests
 ```
 
 ## Test Suite
@@ -231,11 +188,11 @@ Some lints are intentionally disabled (see `.zanuda` file):
 The behaviour contracts for the maze core, the generators and the game
 state are in [docs/spec.md](docs/spec.md).
 
-## License
+## Licence
 
 This project is licensed under the GNU Affero General Public License version 3 or later (AGPL-3.0-or-later).
 
-See [LICENSE](LICENSE) for the full license text.
+See [LICENSE](LICENSE) for the full licence text.
 
 ## Contributing
 
