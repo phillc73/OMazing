@@ -53,7 +53,7 @@ Pinned by `test/test_structure.ml` for each algorithm at all three
 sizes:
 
 1. **Perfect maze** (nine algorithms: Backtracker, Prim's, Growing
-   Tree, Hunt-and-Kill, Eller, Wilson, Blind Swarm, Randomized DFS,
+   Tree, Hunt-and-Kill, Eller, Wilson, Blind Swarm, Randomised DFS,
    Recursive Division): every room open, carved lattice edges equal
    rooms - 1, and the edge set is acyclic. Acyclic plus connected
    implies a spanning tree; the count plus every-room-open implies
@@ -71,14 +71,14 @@ sizes:
 | Algorithm | Family | Properties |
 |---|---|---|
 | Recursive Backtracker | depth-first search, recursive | longest corridors of the ten; start fixed at room `(0, 0)` |
-| Prim's | randomized Prim's, frontier-walls variant | many short branches; frontier is a growable array with swap-and-pop |
+| Prim's | randomised Prim's, frontier-walls variant | many short branches; frontier is a growable array with swap-and-pop |
 | Growing Tree | Jamis Buck's Growing Tree, p = 0.5 newest/random | mix of long corridors and open areas |
 | Hunt-and-Kill | Hunt-and-Kill | random-walk carve plus row scan reprise starting from a random cell |
 | Eller's | Eller's, row-by-row union with set relabelling | one downward link per set per row; horizontal bias from the merge order |
 | Wilson's | Wilson's, loop-erased random walk | uniform spanning tree; slowest of the ten |
 | False Door | Backtracker plus a decoration | stub alcoves only, no route change (invariant 3) |
 | Blind Swarm | multi-walker random growth | walkers merge on meeting; a walker carves only after its step is accepted |
-| Randomized DFS | iterative randomized depth-first search | textbook iterative form; explicit stack |
+| Randomised DFS | iterative randomised depth-first search | textbook iterative form; explicit stack |
 | Recursive Division | recursive division, wall-adding | one passage per dividing wall; walls split the longer axis first |
 
 ## Movement contract

@@ -78,7 +78,7 @@ let algorithm_name = function
   | Wilson -> "Wilson's Algorithm"
   | FalseDoor -> "False Door"
   | BlindSwarm -> "Blind Swarm"
-  | RandomDFS -> "Randomized DFS"
+  | RandomDFS -> "Randomised DFS"
   | RecursiveDivision -> "Recursive Division"
 
 let algorithm_description = function
@@ -91,7 +91,7 @@ let algorithm_description = function
        "Produces more uniform mazes with balanced corridors and open spaces.";
        "Passages are generally shorter and more evenly distributed."]
   | GrowingTree ->
-      ["Generalizes Prim's and Backtracker - uses both newest and random selection.";
+      ["Generalises Prim's and Backtracker - uses both newest and random selection.";
        "With 50% probability: extends newest path (like Backtracker) or random cell.";
        "Produces mazes with a natural mix of long corridors and open areas."]
   | HuntAndKill ->
@@ -115,7 +115,7 @@ let algorithm_description = function
        "A walker joins the maze only when its step is accepted, never by luck.";
        "Walkers merge when they meet, forming a swarm-like pattern."]
   | RandomDFS ->
-      ["Depth-first search with randomized neighbor selection.";
+      ["Depth-first search with randomised neighbor selection.";
        "Similar to Backtracker but implemented iteratively with explicit stack.";
        "Creates mazes with long, winding passages and deep recursion patterns."]
   | RecursiveDivision ->
@@ -145,7 +145,7 @@ type game_state = {
 (* Prim's algorithm wall entry for frontier tracking *)
 type wall_entry = { wx : int; wy : int; rx : int; ry : int; drx : int; dry : int }
 
-(* Initialize an empty maze filled with walls *)
+(* Initialise an empty maze filled with walls *)
 let init_maze () : cell array array = 
   Array.init !height (fun _ -> Array.init !width (fun _ -> Wall))
 
@@ -292,7 +292,7 @@ let generate_maze_prims () =
   let start_grid_y = 2 * start_ry + 1 in
   maze.(start_grid_y).(start_grid_x) <- Path;
   
-  (* Initialize frontier with walls of start room *)
+  (* Initialise frontier with walls of start room *)
   let frontier = add_room_walls start_rx start_ry [] in
   
   (* Prim's algorithm main loop. The frontier is a growable array: a random
@@ -359,7 +359,7 @@ let generate_maze_prims () =
   (maze, start_x, start_y, exit_x, exit_y, Prims)
 
 (* Generate a maze using the Growing Tree algorithm *)
-(* Growing Tree generalizes both Prim's and Backtracker:
+(* Growing Tree generalises both Prim's and Backtracker:
    - With probability p, pick the newest cell (like Backtracker/DFS)
    - With probability 1-p, pick a random cell from the tree (like Prim's)
    - Here we use p=0.5 for a balanced result *)
@@ -633,7 +633,7 @@ let generate_maze_eller () =
   let row_sets = Array.init rooms_y (fun _ -> Array.init rooms_x (fun _ -> -1)) in
   
   for ry = 0 to rooms_y - 1 do
-    (* Step 1: Initialize each cell in this row with its own set *)
+    (* Step 1: Initialise each cell in this row with its own set *)
     if ry = 0 then begin
       for rx = 0 to rooms_x - 1 do
         row_sets.(ry).(rx) <- !next_set_id;
@@ -641,7 +641,7 @@ let generate_maze_eller () =
       done
     end else begin
       (* For rows after the first, sets come from vertical connections above *)
-      (* We'll initialize unassigned cells with new sets *)
+      (* We'll initialise unassigned cells with new sets *)
       for rx = 0 to rooms_x - 1 do
         if row_sets.(ry).(rx) = -1 then begin
           row_sets.(ry).(rx) <- !next_set_id;
@@ -1111,7 +1111,7 @@ let generate_maze_blind_swarm () =
   
   (maze, start_x, start_y, exit_x, exit_y, BlindSwarm)
 
-(* Generate a maze using Randomized DFS algorithm *)
+(* Generate a maze using Randomised DFS algorithm *)
 (* DFS uses a stack (LIFO) with random neighbor ordering:
    1. Start with a cell, mark as visited
    2. Push its neighbors onto stack in random order

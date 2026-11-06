@@ -13,7 +13,7 @@ A maze navigation game with multiple generation algorithms and difficulty levels
   - Wilson's Algorithm
   - False Door
   - Blind Swarm
-  - Randomized DFS
+  - Randomised DFS
   - Recursive Division
 
 - **3 Difficulty Levels:**
@@ -27,13 +27,13 @@ A maze navigation game with multiple generation algorithms and difficulty levels
 |-----------|-------------|
 | **Recursive Backtracker** | Creates long, winding passages with a depth-first exploration pattern. Tends to have longer corridors with fewer branches. Starts from top-left, resulting in mazes with a slight diagonal bias. |
 | **Prim's** | Grows the maze like a spanning tree from a random starting point. Produces more uniform mazes with balanced corridors and open spaces. Passages are generally shorter and more evenly distributed. |
-| **Growing Tree** | Generalizes Prim's and Backtracker - uses both newest and random selection. With 50% probability: extends newest path (like Backtracker) or random cell. Produces mazes with a natural mix of long corridors and open areas. |
+| **Growing Tree** | Generalises Prim's and Backtracker - uses both newest and random selection. With 50% probability: extends newest path (like Backtracker) or random cell. Produces mazes with a natural mix of long corridors and open areas. |
 | **Hunt-and-Kill** | Alternates between random walk ('hunt') and scanning for unvisited cells ('kill'). Creates mazes with long meandering passages and sudden turns. Efficient with a good balance of speed and passage quality. |
 | **Eller's** | Single-pass algorithm that processes one row at a time. Very efficient for large mazes with O(n) complexity. Tends to create mazes with a horizontal bias and long corridors. |
 | **Wilson's** | Uses loop-erased random walks to create perfectly uniform mazes. Slowest algorithm but produces the most uniform, unbiased results. Every cell is equally likely to be connected to any other. |
 | **False Door** | Standard maze with added 'false doors' - one-cell alcoves. Each door is a dead end that joins nothing, so no route changes. Adds visual complexity without creating alternative paths. |
 | **Blind Swarm** | Multiple simultaneous random walks that explore and carve the maze. A walker joins the maze only when a step is accepted, never by luck. Walkers merge when they meet, forming a swarm-like pattern. |
-| **Randomized DFS** | Depth-first search with randomized neighbor selection. Similar to Backtracker but implemented iteratively with explicit stack. Creates mazes with long, winding passages and deep recursion patterns. |
+| **Randomised DFS** | Depth-first search with randomised neighbor selection. Similar to Backtracker but implemented iteratively with explicit stack. Creates mazes with long, winding passages and deep recursion patterns. |
 | **Recursive Division** | Top-down divide-and-conquer approach with walls and passages. Creates maze by recursively splitting regions with dividing walls. Produces mazes with long straight passages and grid-like structure. |
 
 - **Controls:**
